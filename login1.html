@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: white;
+        }
+
+        .background-img {
+            width: 417px;
+            height: 633px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+        }
+
+        .login-container {
+            width: 443px;
+            height: 540.50px;
+            left: 639px;
+            top: 59px;
+            position: absolute;
+        }
+
+        .login-heading {
+            width: 105px;
+            height: 39.37px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            display: inline-flex;
+        }
+
+        .login-title {
+            width: 105px;
+            height: 83px;
+            color: #2F3367;
+            font-size: 28px;
+            font-family: Poppins;
+            font-weight: 700;
+            word-wrap: break-word;
+        }
+
+        .info-message {
+            width: 267px;
+            height: 22.50px;
+            left: 0px;
+            top: 50.62px;
+            position: absolute;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            display: inline-flex;
+            color: #303468;
+            font-size: 16px;
+            font-family: Poppins;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+
+        .button-container {
+            width: 176px;
+            height: 65.62px;
+            padding: 18.50px;
+            left: 267px;
+            top: 390.89px;
+            position: absolute;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            display: inline-flex;
+        }
+
+        .button {
+            width: 139px;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 57px;
+            display: inline-flex;
+        }
+
+        .button-text {
+            justify-content: flex-start;
+            align-items: center;
+            display: flex;
+            color: white;
+            font-size: 22px;
+            font-family: Poppins;
+            font-weight: 600;
+            word-wrap: break-word;
+        }
+
+        .button-icon {
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            display: flex;
+        }
+
+        .button-icon div {
+            width: 33px;
+            height: 33px;
+            padding-top: 9.62px;
+            padding-bottom: 9.62px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        .button-icon div div {
+            width: 6.88px;
+            height: 13.75px;
+            border: 2.80px white solid;
+        }
+
+        .create-account-section {
+            width: 443px;
+            height: 52.12px;
+            left: 0px;
+            top: 488.38px;
+            position: absolute;
+        }
+
+        .new-to-website {
+            width: 164px;
+            height: 24px;
+            left: 0px;
+            top: 28.12px;
+            position: absolute;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            display: inline-flex;
+            color: #393D6E;
+            font-size: 16px;
+            font-family: Poppins;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+
+        .create-account-link {
+            width: 128px;
+            height: 24px;
+            left: 267px;
+            top: 28.12px;
+            position: absolute;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            display: inline-flex;
+            color: #007DFA;
+            font-size: 16px;
+            font-family: Poppins;
+            font-weight: 600;
+            word-wrap: break-word;
+        }
+
+        .divider {
+            width: 443px;
+            height: 0px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            border: 1px #ECECF0 solid;
+        }
+
+        .email-input-section {
+            width: 443px;
+            height: 59.99px;
+            left: 0px;
+            top: 118px;
+            position: absolute;
+        }
+
+        .input-background {
+            width: 443px;
+            height: 59.99px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            background: #E8E8E8;
+            border-radius: 10px;
+        }
+
+        .input-label {
+            width: 54px;
+            height: 24px;
+            left: 36px;
+            top: 18px;
+            position: absolute;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            display: inline-flex;
+            color: #8B8FA8;
+            font-size: 16px;
+            font-family: Poppins;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+
+        .logo {
+            width: 66.10px;
+            height: 65.70px;
+            left: 65px;
+            top: 194px;
+            position: absolute;
+        }
+
+        .branding-text {
+            width: 232px;
+            left: 5px;
+            top: 264px;
+            position: absolute;
+            color: white;
+            font-size: 30px;
+            font-family: Inter;
+            font-weight: 700;
+            word-wrap: break-word;
+        }
+
+        .password-input-section {
+            width: 443px;
+            height: 59.99px;
+            left: 639px;
+            top: 287px;
+            position: absolute;
+        }
+
+        .password-input-section .input-background {
+            background: #E8E8E8;
+        }
+        
+    </style>
+
+    
+
+    <title>HRP-Login </title>
+</head>
+
+<body>
+    <div class="container">
+        <img class="background-img" src="fbg2 1.png" />
+        <div class="login-container">
+            <div class="login-heading">
+                <div class="login-title">Log in <br/></div>
+            </div>
+            <div class="info-message">Please fill your information below</div>
+            <div class="button-container">
+                <div class="button" onclick="loginUser()">
+                    <div class="button-text">
+                        <a href="dashboard1.html" id="button" class="button">
+                            <img src="next 1.png" alt="Next">
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="create-account-section">
+                <div class="new-to-website">New to our Website?</div>
+                <div class="button-text">
+                    <a href="signup.html" class="create-account-link">
+                        Create account
+                    </a>
+                </div>
+                
+                <div class="divider"></div>
+            </div>
+            <div class="email-input-section">
+                <!-- Apply the styles directly to the input element -->
+                <input type="email" id="emailInput" placeholder="Enter your email" class="input-background">
+                
+            </div>
+        </div>
+        <img class="logo" src="logo.png" />
+        <div class="branding-text">Government of Jharkhand</div>
+        <div class="password-input-section">
+            <!-- Apply the styles directly to the input element -->
+            <input type="password" id="passwordInput" placeholder="Enter your password" class="input-background">
+
+        </div>
+        
+    </div>
+    <script>
+        async function loginUser() {
+            const email = document.getElementById('emailInput').value;
+            const password = document.getElementById('passwordInput').value;
+
+            if (!email || !password) {
+                alert('Both fields are mandatory!');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+            if (response.status !== 200) {
+                alert(data.error);  
+                return;
+            }
+
+
+                if (response.status === 200) {
+                    alert('Logged in successfully!');
+                    window.location.href = "/dashboard1.html";
+                } else {
+                    alert(data.error);
+                }
+            } catch (error) {
+                alert('Failed to login. Please try again.');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

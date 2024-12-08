@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            font-size: 16px;
+        }
+    
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+    
+        .main-card {
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .top-part {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+            flex: 1; /* Allow top-part to take remaining vertical space */
+        }
+    
+        .left-part {
+            flex: 1;
+            padding: 0 1rem;
+        }
+    
+/* Add the following CSS styles for the right part */
+.right-part {
+    flex: 1;
+    padding: 0 1rem;
+    overflow-y: auto; /* Make the right part scrollable */
+    border-left: 1px solid #ddd; /* Add a border between left and right parts */
+    max-height: 400px; /* Set a maximum height for the right part */
+}
+
+.card-content {
+    text-align: center;
+    font-size: 1.125rem;
+    max-height: 100%; /* Set a maximum height for the card content area */
+    overflow-y: auto; /* Allow the card content area to scroll if needed */
+}
+
+    
+        .bottom-part {
+            padding: 1rem;
+        }
+    
+        .bottom-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            height: 300px;
+        }
+    
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+    
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        label {
+            margin-bottom: 0.3125rem;
+        }
+    
+        label[for="date"],
+        label[for="category"] {
+            display: block;
+            margin-bottom: 0.3125rem;
+        }
+    
+        input,
+        button {
+            margin-bottom: 0.625rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    
+        input[type="date"],
+        input[type="text"] {
+            width: 100%;
+        }
+    
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+    
+        button:hover {
+            background-color: #0056b3;
+        }
+    
+        .budget-card {
+            border: 1px solid #ddd;
+            margin-bottom: 0.625rem;
+            padding: 0.625rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <div class="top-part">
+            <div class="left-part">
+                <form id="budgetForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" required>
+
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" required>
+
+                    <button type="button" onclick="addBudgetItem()">Add Budget Item</button>
+                </form>
+            </div>
+            <div class="right-part">
+                <div class="card-content">
+                    <ul id="budgetList"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-part">
+            <div class="bottom-card">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script>
+        async function addBudgetItem() {
+            const name = document.getElementById('name').value;
+            const amount = document.getElementById('amount').value;
+            const date = document.getElementById('date').value;
+            const category = document.getElementById('category').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/addBudgetItem', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, amount, date, category }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    updateBudgetList(data.budgetItems);
+                    location.reload();
+                } else {
+                    console.error(data.error);
+                }
+            } catch (error) {
+                console.error('Error adding budget item:', error);
+            }
+        }
+
+        async function fetchBudgetItems() {
+            try {
+                const response = await fetch('http://localhost:3000/getBudgetItems');
+                const data = await response.json();
+
+                if (response.ok) {
+                    updateBudgetList(data.budgetItems);
+                } else {
+                    console.error(data.error);
+                }
+            } catch (error) {
+                console.error('Error fetching budget items:', error);
+            }
+        }
+
+        function updateBudgetList(budgetItems) {
+            const budgetList = document.getElementById('budgetList');
+
+            if (budgetList) {
+                budgetList.innerHTML = '';
+
+                budgetItems.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'budget-card';
+
+                    const date = new Date(item.date);
+                    const formattedDate = date.toLocaleDateString('en-GB');
+
+                    // Update this line to include the delete button
+                    card.innerHTML = `${item.name} - ${item.amount} - ${formattedDate} - ${item.category}
+                        <button class="delete-button" onclick="deleteBudgetItem('${item._id}')">Delete</button>`;
+
+                    budgetList.appendChild(card);
+                });
+            } else {
+                console.error('Element with id "budgetList" not found.');
+            }
+        }
+
+    async function deleteBudgetItem(itemId) {
+    const isConfirmed = confirm('Are you sure you want to delete this item?');
+
+    if (isConfirmed) {
+        try {
+            const response = await fetch('http://localhost:3000/deleteBudgetItem', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ itemId }), // Send itemId in the request body
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Assuming these functions exist in your code
+                fetchBudgetItems();
+                fetchTotalBudgetAmount();
+                location.reload();
+            } else {
+                console.error(data.error);
+            }
+        } catch (error) {
+            console.error('Error deleting budget item:', error);
+        }
+    }
+}
+
+
+        async function fetchTotalBudgetAmount() {
+            try {
+                const response = await fetch('http://localhost:3000/getBudgetItemsSum');
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Do not update total budget amount, only create pie chart
+                    createPieChart(data.sumByCategory);
+                } else {
+                    console.error(data.error);
+                }
+            } catch (error) {
+                console.error('Error fetching total budget amount:', error);
+            }
+        }
+
+        function createPieChart(sumByCategory) {
+            const ctx = document.getElementById('pieChart');
+
+            const labels = Object.keys(sumByCategory);
+            const values = Object.values(sumByCategory);
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total Amount by Category',
+                        data: values,
+                        backgroundColor: getRandomColors(labels.length),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function getRandomColors(numColors) {
+            const colors = [];
+            for (let i = 0; i < numColors; i++) {
+                const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.7)`;
+                colors.push(color);
+            }
+            return colors;
+        }
+
+
+        window.onload = () => {
+            fetchBudgetItems();
+            fetchTotalBudgetAmount();
+        };
+    </script>
+
+</body>
+</html>

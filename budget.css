@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #702100 0%, #DF7418 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+  h1 {
+    color: white;
+  }
+  

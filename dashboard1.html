@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRP-Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: white;
+        }
+
+        #map-container {
+            width: 771px;
+            height: 469px;
+            left: 528px;
+            top: 121px;
+            position: absolute;
+            background: #D9D9D9;
+        }
+
+        .logo {
+            width: 252px;
+            height: 57px;
+            left: 518px;
+            top: 38px;
+            position: absolute;
+        }
+
+        .background-image {
+            width: 463px;
+            height: 633px;
+            left: 0;
+            top: 0;
+            position: absolute;
+        }
+    </style>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/></head>
+</head>
+<body>
+
+<div class="container">
+    <div id="map-container" style="height: 500px;"></div>
+    <div class="logo">
+    <a href="projectoverview.html">
+    <img  src="yourprojec.png" alt="Your Project Logo">
+    </a>
+    </div>
+    <img class="background-image" src="C:\Users\WinUser\Desktop\dashbg 1.png" alt="Dashboard Background">
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
+<script>
+function initMap() {
+    // Initialize map
+    const map = L.map('map-container').setView([24.825411396849034, 83.05813408530197], 8);
+
+    // Add tile layer
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+maxZoom: 19,
+attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var polygon = L.polygon([
+[24.825411396849034, 83.05813408530197],
+[25.055599266439284, 87.83073369114902],
+[22.17171639134162, 86.56142528533863],
+[22.265721059792916, 83.56585744762613]
+]).addTo(map);
+
+var popup = L.popup();
+
+function isInsidePolygon(point, poly) {
+var x = point.lat, y = point.lng;
+var inside = false;
+
+for (var i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+var xi = poly[i].lat, yi = poly[i].lng;
+var xj = poly[j].lat, yj = poly[j].lng;
+
+var intersect = ((yi > y) !== (yj > y)) &&
+(x < ((xj - xi) * (y - yi)) / (yj - yi) + xi);
+
+if (intersect) inside = !inside;
+}
+
+return inside;
+}
+
+function onMapClick(e) {
+const point = e.latlng;
+const isInside = isInsidePolygon(point, polygon.getLatLngs()[0]); 
+if (isInside) {
+    window.location.href = '/projectoverview.html';
+} else {
+popup.setContent("You clicked outside the polygon at " + point);
+}
+
+popup.setLatLng(point).openOn(map);
+}
+
+map.on('click', onMapClick);
+}
+
+// Call the initMap function when the document is ready
+document.addEventListener('DOMContentLoaded', initMap);
+</script>
+</body>
+</html>

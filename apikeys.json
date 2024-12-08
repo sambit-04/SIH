@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "sihcloud",
+  "private_key_id": "01f775f463710f049c048d08144383980507bc35",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDcSDIg1eGMaNps\ngNzSqPZTXOA7UB1RVOogaCySWew3pZrnjimaELGeuq8QbKmCKUSUZl5+jJI3ickH\n9tVsz7dQqiuXpgtiaiaSWzgUhSzRoM0e4/bH3s6AEC+PtwuYsSyiYlW6ZBs6FgNz\nsTvqjCyZNtOkj9YvDMT9MfgcF/Wz9OKZehkkdWukWzyipxzuYAIbHlnnknwMDPoc\ncIvZJQ9sk0IFgM4EDqfTCBgyYFw8yovtkbFWdqqmDuU30eeLy0XGnWk0Pl5UMJac\nROM3tBqaYtQc4Y4tcNQNkjp5AlskQpFMG5wLkUZOVPitywqHcr/jZYonBCmnzSth\nl97la9OPAgMBAAECggEAMx5b56vKniNdAM38sLQ+CYVlkc4bJ5sdg+y43zOX8ifv\npSmj9NlH5s5qvtSAl7CM9iU1a4eijNngOYVp7MjdQQ5kdFo3jRyWG+OoRXbMOk9n\nGnKLe8F0SVq4NtEjE0mWUo6gV1NQ0C94mJn6Dgl+dgW3opoweZWshxdX/OkAf0R4\nJKKq4fRUdVP+LI1n55A4xE7Ck6oqCnCdjQafrdw/o0YRs7dXEzk7FWNoAY8Ei76k\nPFUaX/HikWN/FlOiGOnskJmNrw7/vNbmZemZJjkXpvsuYQOXeMx33Ym9SgDuTopI\nD+rVqedP2CcC6cSP9YAAm0xEdcwDI/yUCIm9mJ1TNQKBgQD1cWaWiOyrrdpeyGwz\nDCx83f/dhBt++hVPhepU7DU7ZsjNIoXAVqZNnyl/dmyBCVXuWc7Da9c9tgOh2tRh\nPTU53PtUQJmPgqRevDJPA8uoLUKsgCqMVs7762ouAsFlU3dlkvuqbUlwb/Aplpcv\n1P4FpjXxWRiywgsuy5DLes4S1QKBgQDlwb67ZiVNxGsk3EP6jpDed+X9KO738WBx\nDSzLvDc/1exxNDKc/WZcZbPvmZJGfx+tmAxO2MRul1Fa2Qsm6CrQcTw9QXd2y3GN\nIKsIFP/FUU/4aPaXyS8TgrlNBy31lJcL8I57lVwUuyPgMB2HwukbYBuC2nxgzfpX\nmTRUCiQW0wKBgQDyeR1ICe0FjbL1gDqkE5q/oPFs/V3Mi3MSJNHjI5dTH6+wODK6\nWN/iPyLX8T4wG/Dwj3hcRuVU6cOc2nqFtdonV9BS457Qz9diX7mzpaREeLItiFCA\nZCIHbgJvgfldCKAjkJlfPKgYk/1GmKazck+hdRpFXCeyMVCq4iAhZSjAIQKBgQCv\nyghD28iI8tLDliAQ8cmX3YbDpvEIFc+jT+BJVY20MtpAVx6ujRcndM0ycn6/n34+\nVMp9/U52CyK87rmgoBw59ZmQiKl94/TSdP9HJMH5V9hnCPA7fDufovJiJC8e6fyT\nrw9lMQcN+Y1ed5HwkMnIH0WNXduyOYbkRR0Le+LW7wKBgF7xli6qrYq6pLU9xWC6\niogzb6k/YkdceeYBPVr6GBXDnosV2m9myfj/CAklJo9YyOMtbGKAg/34SS0oX88A\nWFhxL/3FpwG+8+90ydN35t++tKhBG0Of9ayY0t4HtOj+ICH46EjkvZgJY66qH3DK\nTWo1w/+VU7UDaLMkl7JPx+Fw\n-----END PRIVATE KEY-----\n",
+  "client_email": "service-account@sihcloud.iam.gserviceaccount.com",
+  "client_id": "101118164221615130525",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account%40sihcloud.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

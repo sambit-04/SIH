@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: white;
+        }
+
+        .info-text {
+            height: 22.50px;
+            left: 613px;
+            top: 60px;
+            position: absolute;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            display: inline-flex;
+            color: #303468;
+            font-size: 16px;
+            font-family: Poppins;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+
+        .sign-up-title {
+            width: 138px;
+            height: 43px;
+            left: 613px;
+            top: 17px;
+            position: absolute;
+            color: #2F3367;
+            font-size: 28px;
+            font-family: Poppins;
+            font-weight: 700;
+            word-wrap: break-word;
+        }
+
+        .form-input {
+            width: 443px;
+            height: 60px;
+            position: absolute;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: Poppins;
+        }
+
+        #firstname {
+            top: 91px;
+            left: 613px;
+        }
+
+        #lastname {
+            top: 165px;
+            left: 613px;
+        }
+
+        #email {
+            top: 240px;
+            left: 613px;
+        }
+
+        #password {
+            top: 317px;
+            left: 613px;
+        }
+
+        #confirm-password {
+            top: 403px;
+            left: 613px;
+        }
+
+        #signup-button {
+            width: 165px;
+            height: 52px;
+            left: 714px;
+            top: 503px;
+            position: absolute;
+        }
+
+        #already-text {
+            width: 443px;
+            height: 49px;
+            left: 617px;
+            top: 564px;
+            position: absolute;
+        }
+
+        #background-image {
+            width: 417px;
+            height: 633px;
+            left: -0px;
+            top: 0px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="info-text">Please fill your information below</div>
+    <div class="sign-up-title">Sign Up</div>
+    <input id="firstname" class="form-input" type="text" placeholder="First Name" />
+    <input id="lastname" class="form-input" type="text" placeholder="Last Name" />
+    <input id="email" class="form-input" type="email" placeholder="E-mail" />
+    <input id="password" class="form-input" type="password" placeholder="Password" />
+    <input id="confirm-password" class="form-input" type="password" placeholder="Confirm Password" />
+    <div id="signup-button" onclick="submitForm()">
+    <a href="dashboard1.html">
+    <img src="sign up.png" />
+    </a>
+    </div>
+    <div id="already-text">
+        <a href="C:\Users\WinUser\Desktop\login1.html">
+     <img src="C:\Users\WinUser\Desktop\already.png" />
+        </a>
+    </div>
+    <img id="background-image" src="C:\Users\WinUser\Desktop\bg5.png" />
+</div>
+
+<script>
+    async function submitForm() {
+        const firstName = document.getElementById("firstname").value;
+        const lastName = document.getElementById("lastname").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm-password").value;
+
+        // Check if password and confirm password match
+        if (password !== confirmPassword) {
+            alert("Password and Confirm Password do not match");
+            return;
+        }
+
+        // Your API endpoint URL
+        const apiUrl = "http://localhost:3000/register"; // Replace with your actual API endpoint
+
+        // Prepare data to send to the API
+        const data = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+        };
+
+        try {
+            // Send a POST request to the API
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            // Check the response status
+            if (response.ok) {
+                alert("User registered successfully!");
+                // Redirect to the dashboard page
+                window.location.href = "login1.html";
+            } else {
+                const errorData = await response.json();
+                alert("Error: " + errorData.error);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An unexpected error occurred. Please try again later.");
+        }
+    }
+</script>
+
+</body>
+</html>

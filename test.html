@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geotagged Photos</title>
+    <link rel="stylesheet" href="geotag_photo.css">
+  </head>
+  <body>
+  
+  <h1>Geotagged Photos</h1>
+  <div id=card>
+  <div id="buttons">
+  <label for="startDate">Select Start Date:</label>
+  <input type="date" id="startDate" name="startDate">
+  
+  <label for="endDate">Select End Date:</label>
+  <input type="date" id="endDate" name="endDate">
+  </div>
+  <button id="fetchButton">Fetch Geotagged Photos</button>
+  <button id="compareButton">Compare Photos</button>
+  <button id="readFileButton">Read File</button>
+  
+  <div id="result"></div>
+  
+  <div id="photoContainer"></div>
+</div>
+
+  
+
+<script>
+
+
+
+    async function fetchGeotaggedPhotos() {
+      try {
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+
+        let url = 'http://localhost:3000/fetchGeotaggedPhotos';
+        if (startDate && endDate) {
+
+          url += `?startDate=${startDate}&endDate=${endDate}`;
+        }
+        console.log(url);
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        console.log('Start Date:', startDate);
+        console.log('End Date:', endDate);
+        console.log('Retrieved geotagged photos:', data.photos);
+
+        const photoContainer = document.getElementById('photoContainer');
+        photoContainer.innerHTML = '';
+
+        if (data.photos && data.photos.length > 0) {
+          data.photos.forEach(photo => {
+            const img = document.createElement('img');
+            img.src = photo.image;
+            img.alt = 'Geotagged Photo';
+            img.style.maxWidth = '30%';
+            img.style.height = 'auto';
+            img.style.margin = '1%';
+            photoContainer.appendChild(img);
+          });
+        } else {
+          console.log('No geotagged photos found.');
+        }
+      } catch (error) {
+        console.error('Error fetching geotagged photos:', error);
+      }
+    }
+
+    document.getElementById('fetchButton').addEventListener('click', fetchGeotaggedPhotos);
+
+
+    async function compareGeotaggedPhotos() {
+  try {
+    const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+
+        let url = 'http://localhost:3000/compareGeotaggedPhotos';
+        if (startDate && endDate) {
+
+          url += `?startDate=${startDate}&endDate=${endDate}`;
+        }
+        console.log(url);
+        console.log('pre');
+        const response = await fetch(url);
+        console.log('post');
+        const data = await response.text();
+
+
+    document.getElementById('result').innerHTML = `Comparison Result: ${data.result}`;
+  } catch (error) {
+    console.error('Error in compareGeotaggedPhotos:', error);
+  }
+}
+
+  document.getElementById('compareButton').addEventListener('click', compareGeotaggedPhotos);
+
+  function readTextFile(filePath, callback) {
+      fetch(filePath)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById('result').innerHTML = `Comparison Result: ${data}`;
+          callback(null, data);
+        })
+        .catch(error => {
+          callback(error, null);
+        });
+        
+    }
+
+    document.getElementById('readFileButton').addEventListener('click', async function() {
+  const apiUrl = 'http://localhost:3000/readFile';
+
+  try {
+    const response = await fetch(apiUrl);
+    
+    if (!response.ok) {
+      throw new Error(`Error reading the file. Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('File content:', data);
+    // Process the content of the file as needed
+
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "final-int",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "date-fns": "^3.0.0",
+    "express": "^4.18.2",
+    "fs.promises": "^0.1.2",
+    "google-auth-library": "^9.4.1",
+    "googleapis": "^129.0.0",
+    "moment": "^2.29.4",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.3",
+    "multer": "^1.4.5-lts.1",
+    "path": "^0.12.7",
+    "validator": "^13.11.0"
+  }
+}

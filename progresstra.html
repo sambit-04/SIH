@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: white;
+        }
+
+        .button {
+            width: 264px;
+            height: 66px;
+            position: absolute;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+
+        .button:hover {
+            opacity: 0.8;
+        }
+
+        .button1 {
+            left: 520px;
+            top: 2057px;
+        }
+
+        .button2 {
+            left: 981px;
+            top: 2057px;
+        }
+
+        .colored-box {
+            width: 368px;
+            height: 352px;
+            position: absolute;
+            background: #D9D9D9;
+        }
+
+        .colored-box:nth-child(2) {
+            left: 929px;
+            top: 120px;
+        }
+
+        .colored-box:nth-child(3) {
+            left: 929px;
+            top: 1103px;
+        }
+
+        .colored-box:nth-child(4) {
+            left: 697px;
+            top: 1614px;
+        }
+
+        .colored-box:nth-child(5) {
+            left: 929px;
+            top: 612px;
+        }
+
+        .text-box {
+            left: 585px;
+            top: 41px;
+            position: absolute;
+            color: black;
+            font-size: 35px;
+            font-family: Inter;
+            font-weight: 700;
+            word-wrap: break-word;
+        }
+
+        .border-line {
+            width: 877px;
+            height: 0px;
+            left: 1319px;
+            position: absolute;
+            transform: rotate(180deg);
+            transform-origin: 0 0;
+            border: 2px #B8B8B8 solid;
+        }
+
+        .border-line:nth-child(2) {
+            top: 527px;
+        }
+
+        .border-line:nth-child(3) {
+            top: 1502px;
+        }
+
+        .border-line:nth-child(4) {
+            top: 1007px;
+        }
+
+        .full-width-image {
+            width: 411px;
+            height: 2185px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button button1" onclick="handleButtonClick('Image 1')">
+            <img src="https://via.placeholder.com/264x66" alt="Image 1">
+        </button>
+        <div class="colored-box"></div>
+        <div class="colored-box"></div>
+        <div class="colored-box"></div>
+        <div class="colored-box"></div>
+        <div class="text-box">Images</div>
+        <div class="border-line"></div>
+        <div class="border-line"></div>
+        <div class="border-line"></div>
+        <img class="full-width-image" src="https://via.placeholder.com/411x2185" />
+        <button class="button button2" onclick="handleButtonClick('Image 2')">
+            <img src="https://via.placeholder.com/264x66" alt="Image 2">
+        </button>
+    </div>
+
+    <script>
+        function handleButtonClick(imageName) {
+            // Add your button click logic here
+            alert('Button clicked: ' + imageName);
+        }
+    </script>
+</body>
+</html>
